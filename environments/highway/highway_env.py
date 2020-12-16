@@ -16,30 +16,30 @@ else:
 import traci
 from sumolib import checkBinary
 
+from environments.sumo_gym import SumoGym
 from environments.highway import config
 from utils.misc import normalize_data
 
 
 
-class HighwayEnv(Env):
+class HighwayEnv(SumoGym):
     def __init__(self):
+        super(HighwayEnv, self).__init__()
+
+        self.config = config
         
         self.sumo_config = "/home/niranjan/sumo-gym/environments/highway/sumo_configs/highway.sumocfg"
         
-        if config.use_gui:
+        if self.config.use_gui:
             self.sumo_binary = checkBinary('sumo-gui')
         else:
             self.sumo_binary = checkBinary('sumo')
 
-        self.sumo_cmd = [self.sumo_binary, '-c', self.sumo_config, '--max-depart-delay', str(100000), '--random']
-
-        self.sumo_running = False
+        self.sumo_cmd = [self.sumo_binary, '-c', self.sumo_config, '--max-depart-delay', str(100000), '--no-step-log', '--duration-log.disable', '--random']
 
         # state and action space
         self.observation_space = spaces.Box(low = 0, high = 1, shape = np.array([1]), dtype = np.uint8)
         self.action_space = spaces.Discrete(config.N_DISCRETE_ACTIONS)
-
-        self.config = config
 
 
     def reset(self):  
@@ -71,36 +71,6 @@ class HighwayEnv(Env):
         reward, done, info = self.get_reward()
 
         return observation, reward, done, info
-
-
-    def start_sumo(self):
-        if not self.sumo_running:
-            traci.start(self.sumo_cmd)
-            self.sumo_running = True
-
-    
-    def stop_sumo(self):
-        if self.sumo_running:
-            traci.close()
-            sys.stdout.flush()
-            self.sumo_running = False
-
-    
-    def add_ego_vehicle(self, pose = 0.0):
-        dt = traci.simulation.getDeltaT()
-        vehicles = traci.vehicle.getIDList()
-        for i in range(len(vehicles)):
-            if vehicles[i] == self.ev.id:
-                try:
-                    traci.vehicle.remove(self.ev.id)
-                except:
-                    pass
-
-        traci.vehicle.addFull(self.config.ev_id, 'routeEgo', depart=None, departPos=str(pose), departSpeed='0', typeID='vType0')
-        traci.vehicle.setSpeedMode(self.config.ev_id, int('00000',0))
-        traci.vehicle.setSpeed(self.config.ev_id, 0.0)
-
-
 
 
     def take_action(self, max_speed = 15, action = 3):
@@ -182,9 +152,4 @@ class HighwayEnv(Env):
         return total_reward, done, info
 
 
-    def initialize_ev(self):
-        for i in range(5):
-            self.take_action(action = 3)
 
-    def get_ev_speed(self):
-        return traci.vehicle.getSpeed(self.config.ev_id)
