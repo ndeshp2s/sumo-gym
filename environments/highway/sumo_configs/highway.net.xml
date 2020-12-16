@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Mon Feb 25 20:52:37 2019 by SUMO netconvert Version 0.25.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="stationary_pedestrians.nod.xml"/>
+        <edge-files value="stationary_pedestrians.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="stationary_pedestrians.net.xml"/>
+    </output>
+
+    <processing>
+        <no-turnarounds value="true"/>
+    </processing>
+
+</configuration>
+-->
+
+<net version="0.25" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,5000.00,0.00" origBoundary="0.00,0.00,5000.00,0.00" projParameter="!"/>
+
+    <edge id="CE" from="C" to="E" priority="-1">
+        <lane id="CE_0" index="0" speed="10.00" length="5000.00" width="7.00" shape="0.00,-3.55 5000.00,-3.55"/>
+    </edge>
+    <edge id="EC" from="E" to="C" priority="-1">
+        <lane id="EC_0" index="0" speed="10.00" length="5000.00" width="7.00" shape="5000.00,3.55 0.00,3.55"/>
+    </edge>
+
+    <junction id="C" type="dead_end" x="0.00" y="0.00" incLanes="EC_0" intLanes="" shape="0.00,-0.05 0.00,-7.05 0.00,7.05 0.00,0.05"/>
+    <junction id="E" type="unregulated" x="5000.00" y="0.00" incLanes="CE_0" intLanes="" shape="5000.00,0.05 5000.00,7.05 5000.00,-7.05 5000.00,-0.05"/>
+
+</net>

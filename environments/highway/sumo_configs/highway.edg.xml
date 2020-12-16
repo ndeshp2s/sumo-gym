@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges> 
+ <edge id="CE" from="C" to="E" numLanes="1" speed="10.00">
+   <lane index="0" allow="all" spreadType="center" width="7.00"/>
+ </edge>
+
+ <edge id="EC" from="E" to="C" numLanes="1" speed="10.00">
+   <lane index="0" allow="all" spreadType="center" width="7.00"/>
+ </edge>
+</edges>
+

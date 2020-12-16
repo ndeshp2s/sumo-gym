@@ -1,0 +1,6 @@
+<routes>
+    <!-- Ego car -->
+    <route id="routeEgo" edges="CE CE"/>
+    <vType id="vType0" decel="4.5" vClass="passenger" guiShape="passenger/sedan" color="1,0,0" maxSpeed="15.0" minGap="0.1"/>
+
+</routes>

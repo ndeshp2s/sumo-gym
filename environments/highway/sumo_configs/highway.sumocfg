@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <input>
+        <net-file value="highway.net.xml"/>      
+        <route-files value="highway.rou.xml"/>
+        
+ 		<gui-settings-file value="highway.settings.xml"/>
+    </input>
+    <time>
+ 		<step-length value="0.1"/>
+    </time>
+</configuration>
