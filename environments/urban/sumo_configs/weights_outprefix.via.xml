@@ -1,0 +1,12 @@
+<edgedata>
+    <interval id="via" begin="0.0" end="30.0">
+        <edge id="WC" value="100.00"/>
+        <edge id="NC" value="10.00"/>
+        <edge id="N3N2" value="100.00"/>
+        <edge id="N2N3" value="100.00"/>
+        <edge id="N2N1" value="10.00"/>
+        <edge id="N1N2" value="10.00"/>
+        <edge id="CW" value="100.00"/>
+        <edge id="CN" value="10.00"/>
+    </interval>
+</edgedata>

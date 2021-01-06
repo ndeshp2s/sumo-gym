@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nodes>
+ <node id="C" x="0.0" y="0.0" type="traffic_light"/>
+ <node id="E" x="50.00" y="0.00" type="unregulated"/>
+ <node id="N" x="0.00" y="20.00" type="unregulated"/>
+ <node id="S" x="0.00" y="-25.00" type="unregulated"/>
+ <node id="W" x="-25.00" y="0.00" type="unregulated"/>
+ <node id="W1" x="-75.00" y="0.00" type="unregulated"/>
+
+ <node id="N1" x="0.00" y="30.00" type="unregulated"/>
+ <node id="N2" x="0.00" y="40.00" type="traffic_light"/>
+ <node id="N3" x="0.00" y="200.00" type="unregulated"/>
+
+ <node id="S1" x="0.00" y="-50.00" type="unregulated"/>
+
+</nodes>

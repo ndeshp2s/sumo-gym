@@ -1,0 +1,11 @@
+<edgedata>
+    <interval id="src" begin="0.0" end="100.0">
+        <edge id="WC" value="100.00"/>
+        <edge id="CW" value="100.00"/>
+        <edge id="NC" value="100.00"/>
+        <edge id="CN" value="100.00"/>
+        <edge id="CS" value="30.00"/>
+        <edge id="N2N1" value="100.00"/>
+        <edge id="N1N2" value="100.00"/>
+    </interval>
+</edgedata>

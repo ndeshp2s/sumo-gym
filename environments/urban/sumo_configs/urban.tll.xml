@@ -1,0 +1,12 @@
+<tlLogics version="0.13" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tllogic_file.xsd">
+    
+    <tlLogic id="N2" type="static" programID="custom" offset="0">
+        <phase duration="100000" state="GGGGG"/> 
+        <phase duration="100000" state="GGGGG"/> 
+    </tlLogic>
+    <tlLogic id="C" type="static" programID="custom" offset="0">
+        <phase duration="10000" state="GGGGGGGGGGGGGGGGGG"/> <!-- do not switch vehicle phase automatically -->
+        <phase duration="10000" state="GGGGGGGGGGGGGGGGGG"/>
+
+    </tlLogic>
+</tlLogics>

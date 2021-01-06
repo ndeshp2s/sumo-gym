@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <input>
+        <net-file value="urban.net.xml"/>
+        <route-files value="urban.rou.xml"/>    
+<!--        <route-files value="pedestrians.rou.xml, pedestrians_n1w_s1w.trip.xml"/> -->
+         <!--<route-files value="pedestrians.rou.xml, ped/wc_cw.trip.xml, ped/cw_wc.trip.xml,
+        	                                     ped/nc_cn.trip.xml, ped/cn_nc.trip.xml, pedestrians_cw_ce.trip.xml, pedestrians_cw_cn.trip.xml, pedestrians_cw_sc.trip.xml, pedestrians_n1w_s1w.trip.xml, pedestrians_wc_ce.trip.xml, pedestrians_wc_ec.trip.xml, pedestrians_ww1_w1w.trip.xml"/> -->
+        
+        <additional-files value="urban.tll.xml"/>
+        
+ 		<gui-settings-file value="urban.settings.xml"/>
+    </input>
+    <time>
+ 		<step-length value="0.1"/>
+    </time>
+</configuration>
