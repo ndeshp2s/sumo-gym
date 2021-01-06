@@ -99,7 +99,7 @@ if __name__ == '__main__':
     parser.add_argument('--parameters', dest='parameters', action='store_true', help='file for training/testing parameters')
     parser.add_argument('--dir', default = None, type=str, help='directory for the experiment')
     parser.add_argument('--env', default='Highway-v0', type=str, help='gym environment')
-    parser.add_argument('--agent_type', default='fc_dqn', type=str, help='type of RL agent used')
+    parser.add_argument('--agent_type', default='cnn_dqn', type=str, help='type of RL agent used')
     args = parser.parse_args()
 
     main(parser.parse_args())

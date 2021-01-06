@@ -36,6 +36,8 @@ class Trainer:
 
     def train(self, pre_eps = -1, pre_steps = 0):
 
+        #self.env.generate_walker_trips(start_time = 0.0, end_time = 1.0, period = 1.0, pedestrians = 0)
+
         self.fill_memory_buffer()
         print('------------------------------------------------------------------------------')
         print('Buffer memory size: ', self.agent.buffer.__len__())
@@ -98,6 +100,9 @@ class Trainer:
 
             ep += 1
 
+            #self.env.generate_walker_trips()
+
+
 
             # Print details of the episode
             print("-----------------------------------------------------------------------------------")
@@ -147,7 +152,7 @@ class Trainer:
             self.load_buffer()
 
         else:
-            size = int(self.params.hyperparameters['buffer_size']/2)
+            size = int(self.params.hyperparameters['buffer_size']/4)
             while True:
                 
                 state = self.env.reset()

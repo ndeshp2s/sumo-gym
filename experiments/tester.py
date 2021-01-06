@@ -33,9 +33,10 @@ class Tester:
                 # Execute action for n times
                 for i in range(0, self.params.action_repeat):
                     next_state, reward, done, info = self.env.step(action = action)
-                    print('reward: ', reward)
-                    print('next_state: ', next_state)
-                    print('speed: ', self.env.get_ev_speed())
+                    #print('reward: ', reward)
+                    #print('next_state: ', next_state)
+                    speed = self.env.get_ev_speed()
+                    #print('speed: ', speed)
 
                 state = next_state
 
