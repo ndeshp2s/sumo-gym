@@ -55,7 +55,8 @@ class SumoGym(gym.Env):
 
 
     def get_ev_speed(self):
-        return traci.vehicle.getSubscriptionResults(self.config.ev_id)
+        #return traci.vehicle.getSubscriptionResults(self.config.ev_id)
+        return round(traci.vehicle.getSpeed(self.config.ev_id), 2)
 
 
     def get_transform(self, id, type):
