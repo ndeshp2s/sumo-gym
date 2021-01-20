@@ -26,19 +26,20 @@ class Tester:
                     action = input('Enter action: ')
                     action = int(action)
                 else:
-                    input('Enter: ')
+                    #input('Enter: ')
                     action, action_values = self.agent.pick_action(state, 0)
-                    print(action_values)
+                    print(action, action_values)
 
                 # Execute action for n times
                 for i in range(0, self.params.action_repeat):
                     next_state, reward, done, info = self.env.step(action = action)
-                    #print('reward: ', reward)
+                    print('reward: ', reward)
                     #print('next_state: ', next_state)
                     speed = self.env.get_ev_speed()
-                    #print('speed: ', speed)
+                    print('speed: ', speed)
 
                 state = next_state
+                print(info)
 
                 if done:
                     break

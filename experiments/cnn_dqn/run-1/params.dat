@@ -23,6 +23,6 @@ use_cuda = True
 learning_rate = 0.0001
 buffer_size = 200000
 batch_size = 32
-discount_rate = 0.95
+discount_rate = 0.99
 target_network_update_frequency = 1000
 update_buffer_memory_frequency = 10

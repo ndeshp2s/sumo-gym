@@ -49,6 +49,9 @@ class UrbanEnv(SumoGym):
 
     def reset(self):
 
+        self.generate_walker_trips()
+        time.sleep(1)
+
         self.stop_sumo()
         time.sleep(1)
 
@@ -172,7 +175,7 @@ class UrbanEnv(SumoGym):
 
 
     def get_reward(self):
-        done = 0
+        done = False
         info = 'None'
         total_reward = d_reward = nc_reward = c_reward = 0.0
 
@@ -183,6 +186,8 @@ class UrbanEnv(SumoGym):
         target_speed = self.config.ev_target_speed
         if ego_vehicle_speed > 0.0:
             d_reward = (target_speed - abs(target_speed - ego_vehicle_speed))/target_speed
+        # elif ego_vehicle_speed > self.config.target_speed:
+        #     d_reward = -1.0
         elif ego_vehicle_speed <= 0.0:
             d_reward = -1.0
 
@@ -201,11 +206,13 @@ class UrbanEnv(SumoGym):
                 done = True
                 info = 'Normal Collision'
             else:
+                c_reward = -10
                 done = True
                 info = 'Pedestrian Collision'
 
         elif near_collision:
             if ego_vehicle_speed > 0.0:
+                print(distance/nc_dist_max)
                 nc_reward = -4 * np.exp( -(distance/nc_dist_max) )
                 nc_reward = round(nc_reward, 2)
 
@@ -217,16 +224,17 @@ class UrbanEnv(SumoGym):
             info = 'Goal Reached'
 
 
-        # total_reward = d_reward + c_reward + nc_reward
-        # total_reward = round(total_reward, 2)
-        if collision:
-            total_reward = c_reward
-        elif near_collision:
-            total_reward = nc_reward
-        else:
-            total_reward = d_reward
+        total_reward = d_reward + c_reward + nc_reward
+        total_reward = round(total_reward, 2)
+        # if collision:
+        #     total_reward = c_reward
+        # elif near_collision:
+        #     total_reward = nc_reward
+        # else:
+        #     total_reward = d_reward
 
         total_reward = round(total_reward, 2)
+        print('rewards: ', c_reward, nc_reward, d_reward, total_reward)
 
         return total_reward, done, info
 
@@ -300,7 +308,7 @@ class UrbanEnv(SumoGym):
         return n
 
 
-    def generate_walker_trips(self, start_time = 0.0, end_time = 100.0, period = 0.1, pedestrians = 100):
+    def generate_walker_trips(self, start_time = 0.0, end_time = 100.0, period = 0.1, pedestrians = 150):
         num_of_ped = randint(pedestrians, pedestrians + 10)
         if pedestrians == 0:
             num_of_ped = 1

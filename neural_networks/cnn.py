@@ -30,7 +30,7 @@ class NeuralNetwork(nn.Module):
 
         self.avg_pool = nn.AvgPool2d(kernel_size = (3, 3), stride = (3, 3))
 
-        self.fc1 = nn.Linear(128 + 1, 64)
+        self.fc1 = nn.Linear(384 + 1, 64)
         self.fc2 = nn.Linear(64, 32)
         self.fc3 = nn.Linear(32, self.output_size)
 
@@ -48,7 +48,7 @@ class NeuralNetwork(nn.Module):
 
         conv_out = self.conv1(x)
         conv_out = self.relu(conv_out)
-        conv_out = self.avg_pool(conv_out)
+        #conv_out = self.avg_pool(conv_out)
         #print(conv_out.size())
 
         conv_out = self.conv2(conv_out)
@@ -79,11 +79,11 @@ class NeuralNetwork(nn.Module):
 
 
 
-DEBUG = 1
+DEBUG = 0
 
 if DEBUG:
     state_1 = np.zeros([1])
-    state_2 = np.zeros([80, 60, 4])
+    state_2 = np.zeros([40, 30, 4])
 
     batch_size = 32
     state_1_batch = []

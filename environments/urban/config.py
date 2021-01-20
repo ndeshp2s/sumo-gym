@@ -9,18 +9,18 @@ max_speed = 12 # in meter/second
 target_speed = 8
 
 # sumo related
-use_gui = False
+use_gui = True
 
 # observation space related
-grid_height = 40*2
-grid_width = 30*2
+grid_height = 40
+grid_width = 30
 features = 4
 
-grid_height_min = -4*2
-grid_height_max = 35*2
+grid_height_min = -4
+grid_height_max = 35
 
-grid_width_min = -15*2
-grid_width_max = 14*2
+grid_width_min = -15
+grid_width_max = 14
 
 # action space related
 N_DISCRETE_ACTIONS = 4
