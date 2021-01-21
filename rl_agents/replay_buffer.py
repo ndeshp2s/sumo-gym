@@ -2,7 +2,7 @@ import random
 import numpy as np
 import torch
 from collections import deque, namedtuple
-
+import pickle
 
 class ReplayBuffer():
     def __init__(self, buffer_size, batch_size):
@@ -27,3 +27,18 @@ class ReplayBuffer():
 
     def __len__(self):
         return len(self.memory)
+
+    def __getstate__(self):
+        print("I'm being pickled")
+        return self.memory
+
+    def __setstate__(self, d):
+        print("I'm being unpickled with these values: " + repr(d))
+        self.memory = d
+
+    # def save_buffer(self):
+
+    #     with open('replay_memory_buffer.pkl', 'wb') as fp:
+    #         pickle.dump(self.memory, fp)
+    #     # with bz2.BZ2File(self.buffer_dir + '/replay_memory_buffer.bz2', 'wb') as f:
+    #     #     pickle.dump(self.agent.buffer.memory, f)

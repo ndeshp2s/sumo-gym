@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import torch.optim as optim
-from neural_networks.fc import NeuralNetwork
+from neural_networks.cnn import NeuralNetwork
 from rl_agents.replay_buffer import ReplayBuffer
 
 class DQNAgent:
@@ -19,7 +19,8 @@ class DQNAgent:
 
         # Initialise Q-Network
         self.local_network = NeuralNetwork(self.state_dim, self.action_dim).to(self.device)
-        self.optimizer = optim.Adam(self.local_network.parameters(), lr = self.hyperparameters["learning_rate"], eps = 1e-4)
+        self.target_network = NeuralNetwork(self.state_dim, self.action_dim).to(self.device)
+        self.optimizer = optim.Adam(self.local_network.parameters(), lr = self.hyperparameters["learning_rate"])
         self.criterion = torch.nn.MSELoss()
 
         # Initialise replay memory
@@ -76,10 +77,10 @@ class DQNAgent:
         #Get the q value corresponding to the action executed
         q_predicted = q_predicted_all.gather(dim = 1, index = actions.unsqueeze(dim = 1)).squeeze(dim = 1)
         # Get q values for all the actions of next state
-        q_next_predicted_all = self.local_network.forward(x1 = next_states1, x2 = next_states2)
+        q_next_predicted_all = self.target_network.forward(x1 = next_states1, x2 = next_states2)
         
         # get q values for the actions of next state from target netwrok
-        q_next_target_all = self.local_network.forward(x1 = next_states1, x2 = next_states2)
+        q_next_target_all = self.target_network.forward(x1 = next_states1, x2 = next_states2)
         # get q value of action with same index as that of the action with maximum q values (from local network)
         q_next_target = q_next_target_all.gather(1, q_next_predicted_all.max(1)[1].unsqueeze(1)).squeeze(1)
         # Find target q value using Bellmann's equation
@@ -141,3 +142,10 @@ class DQNAgent:
             action = np.random.randint(0, 4)
 
         return action, action_values[0].squeeze(0)
+
+
+    def hard_update_target_network(self):
+        print('--------------------------------------------------')
+        print('Updating target network')
+        print('--------------------------------------------------')
+        self.target_network.load_state_dict(self.local_network.state_dict())
